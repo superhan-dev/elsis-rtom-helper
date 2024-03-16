@@ -38,8 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  console.log("Message received from content script:", message);
-  if (message.action === "check_login") {
+  if (!message.isLogin) {
     document.querySelector("#title-h1").innerHTML = "Login Required!";
+  } else {
+    const title = chrome.runtime.getManifest().name;
+    document.querySelector("#title-h1").innerHTML = title;
   }
 });

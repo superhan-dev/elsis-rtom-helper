@@ -16,14 +16,6 @@
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === "convert") {
     document.documentElement.style.filter = "grayscale(100%)";
-    var loginTextPanel = document.getElementById(
-      "ctl00_Main_panelLogin_ECAALL"
-    );
-
-    if (loginTextPanel) {
-      // TODO: change popup title.
-      chrome.runtime.sendMessage({ action: false });
-    }
     sendResponse({ message: "Website converted to black and white." });
   } else if (request.action === "reset") {
     document.documentElement.style.filter = "none";
@@ -34,8 +26,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     );
 
     if (loginTextPanel) {
-      // TODO: change popup title.
-      chrome.runtime.sendMessage({ action: "check_login" });
+      chrome.runtime.sendMessage({ isLogin: false });
+    } else {
+      chrome.runtime.sendMessage({ isLogin: true });
     }
   }
 });
