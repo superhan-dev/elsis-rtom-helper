@@ -1,0 +1,23 @@
+{
+  "name": "Elsis RTO manager halper",
+  "description": "Elsis RTO manager automatic helper",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "service_worker.js",
+    "matches": ["http://*/*", "https://*/*"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": []
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Click to show an alert",
+    "default_icon": "assets/hello_extensions.png"
+  },
+  "permissions": ["activeTab"]
+}
